@@ -16,7 +16,7 @@ This repository is a companions to (ARXIV) (DOI). It contains the cWB analysis p
 
 To keep the repository size manageable, we do not provide data from the injection stydies for the p-value and energy error estimation.
 
-This repository is complementar to https://github.com/jahedabedi/GW190521echo
+This repository is complementar to https://github.com/jahedabedi/GW190521echo, where the data for the PyCBC analysis of the same work is available.
 
 
 We encourage use of these data in derivative works. If you use the material provided here, please cite the paper using the reference:
