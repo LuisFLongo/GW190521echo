@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--                                                                           -->
+<!-- Author: Gabriele Vedovato                                                 -->
+<!--                                                                           -->
+<!--   Date: Date: Sun Jan 13 16:13:38 2013                                    -->
+<!--                                                                           -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>CWB Display</title>
+<meta name="rating" content="General" />
+<meta name="objecttype" content="Report" />
+<meta name="keywords" content="software development, GW, Analysis, Virgo, LIGO " />
+<meta name="description" content="CWB - An Framework For GW Burst Data Analysis." />
+<link rel="shortcut icon" href="/home/cWB_docker/WWW//logo/cwb_logo_icon_modern.png" type="image/png" />
+<link rel="icon" href="/home/cWB_docker/WWW//logo/cwb_logo_icon_modern.png" type="image/png" />
+<link rel="stylesheet" type="text/css" href="/home/cWB_docker/WWW//root/scripts/ROOT_modern.css" id="CWBstyle" />
+<script type="text/javascript" src="/home/cWB_docker/WWW//root/scripts/ROOT.js"></script>
+
+<script type="text/javascript">
+  function toggleVisible(division) {
+  if (document.getElementById("div_" + division).style.display == "none") {
+    document.getElementById("div_" + division).style.display = "block";
+    document.getElementById("input_" + division).checked = true;
+  } else {
+    document.getElementById("div_" + division).style.display = "none";
+    document.getElementById("input_" + division).checked = false;
+  }
+}
+</script>
+
+<script type="text/javascript">
+function onSearch() {
+var s='http://www.google.com/search?q=%s+site%3A%u+-site%3A%u%2Fsrc%2F+-site%3A%u%2Fexamples%2F';
+var ref=String(document.location.href).replace(/https?:\/\//,'').replace(/\/[^\/]*$/,'').replace(/\//g,'%2F');
+window.location.href=s.replace(/%u/ig,ref).replace(/%s/ig,escape(document.searchform.t.value));
+return false;}
+</script>
+
+</head>
+
+<body  onload="javascript:SetValuesFromCookie();"><div id="body_content">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table bgcolor="#223E5F" cellspacing="0" cellpadding="0" width="100%" height="120px"  align="center">
+  <tr>
+    <td>  <img style="height:100px" alt="Logo" src="/home/cWB_docker/WWW//banner/cwb-lbanner-modern.png" USEMAP="#cwb_lbanner_modern" />  </td>
+    <td style="width:45%"> </td>
+    <td align="middle" style="color: #FFFFFF" nowrap="nowrap"><font size="6">coherent WaveBurst</font> &#160;
+    <td style="width:55%"> </td>
+    <td> <img style="height:100px" alt="Logo" src="/home/cWB_docker/WWW//logo/cluster_site_logo_modern.png" USEMAP="#cluster_site_logo_map" /> </td>
+  </tr>
+</table>
+</div>
+
+<map id="cwb_lbanner_modern" name="cwb_lbanner_modern"><area shape="rect" alt="" title="cWB Documentation" coords="0,90,300,0" href="https://gwburst.gitlab.io/documentation/latest/html/" target="_
+blanck" /></map>
+
+<map id="cluster_site_logo_map" name="cluster_site_logo_map"><area shape="rect" alt="" title="LIGO Homepage" coords="0,45,140,0" href="http://www.ligo.caltech.edu/" target="_blanck" /><area shape="rect" alt="" title="VIRGO Homepage" 
+coords="0,90,140,45" href="http://www.virgo-gw.eu/" target="_blanck" /></map>
+
+<div id="toplinks">
+<div class="descrhead"><div class="descrheadcontent">
+<span class="descrtitle">Quick Links:</span>
+<a class="descrheadentry" href="https://gwburst.gitlab.io/documentation/latest/html/index.html">CWB Documentation</a>
+<a class="descrheadentry" href="https://gwburst.gitlab.io/documentation/latest/html/library/html/files.html">CWB Reference</a>
+<a class="descrheadentry" href="https://gitlab.com/gwburst">CWB Repository</a>
+<a class="descrheadentry" href="https://gitlab.com/groups/gwburst/-/issues">CWB Issues</a>
+<a class="descrheadentry" href="http://root.cern.ch">ROOT Homepage</a>
+</div>
+</div>
+</div>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+<title>MAIN_Index</title>
+<!-- Include the tabber code -->
+<script type="text/javascript" src="tabber.js"></script>
+<link rel="stylesheet" href="tabber.css" TYPE="text/css" MEDIA="screen">
+
+<script type="text/javascript">
+
+/* Optional: Temporarily hide the "tabber" class so it does not "flash"   on
+ * the page as plain HTML. After tabber runs, the class is changed
+   to "tabberlive" and it will appear. */
+
+document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+
+</script>
+
+</head>
+
+<h2 class="convert" align="center"> /home/cWB_docker/git/cWB/library/tools/cwb/macros/cwb2G_parameters.C </h2>
+<div class="listing"><pre class="listing">
+// main cwb configuration file for the 2G pipeline
+// parameters can be redefined/added in user_parameters.C
+// for reference contact
+// S.Klimenko, University of Florida. klimenko@phys.ufl.edu
+// G.Vedovato, University of Padova, vedovato@lnl.infn.it
+{
+#ifndef CWB_PARAMETER_FILE
+#define CWB_PARAMETER_FILE
+
+  #include <span class="string">"xroot.hh"</span>        // defines macro to manage ROOT5 vs ROOT6 
+
+  /****** search ******/</span>
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">analysis</a>[8]=<span class="string">"2G"</span>;     // 2G pipeline 
+  CheckAnalysis();           // check consistency with the environment CWB_ANALYSIS
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">online</a>=false;         // true/false -&gt; <a href="ListOfTypes.html#bool">online</a>/offline
+  SEARCH(<a href="ListOfTypes.html#char">char</a>) = <span class="string">'r'</span>;        // see description below
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">optim</a>=false;          // true -&gt; optimal resolution likelihood <a href="ListOfTypes.html#char">analysis</a> 
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">fLow</a>  = 64.;        // low frequency of the search
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">fHigh</a> = 2048.;      // high frequency of the search
+
+  /****** network configuration ******/</span>
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">ifo</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>][8];
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;0) strcpy(<a href="ListOfTypes.html#char">ifo</a>[0],<span class="string">"L1"</span>);  		 // LIGO Livingston                   
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;1) strcpy(<a href="ListOfTypes.html#char">ifo</a>[1],<span class="string">"H1"</span>);  		 // LIGO Hanford                   
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;2) strcpy(<a href="ListOfTypes.html#char">ifo</a>[2],<span class="string">"V1"</span>);  		 // Virgo                   
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;3) strcpy(<a href="ListOfTypes.html#char">ifo</a>[3],<span class="string">"I1"</span>);  		 // LIGO India                   
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;4) strcpy(<a href="ListOfTypes.html#char">ifo</a>[4],<span class="string">"J1"</span>);  		 // KAGRA Japan                  
+  if(<a href="ListOfTypes.html#int">NIFO_MAX</a>&gt;5) strcpy(<a href="ListOfTypes.html#char">ifo</a>[5],<span class="string">"G1"</span>);  		 // GEO-600 Hannover
+  for(<a href="ListOfTypes.html#int">int</a> i=6;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) strcpy(<a href="ListOfTypes.html#char">ifo</a>[i],<span class="string">""</span>); // <a href="ListOfTypes.html#char">ifo</a>[] can be redefined by user 
+
+  <a href="ListOfTypes.html#int">int</a>  <a href="ListOfTypes.html#int">nIFO</a> = 3;            // size of network starting with first detector <a href="ListOfTypes.html#char">ifo</a>[]
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">refIFO</a>[4] = <span class="string">"L1"</span>;    // reference IFO
+  detectorParams detParms[<a href="ListOfTypes.html#int">NIFO_MAX</a>];   // user defined detectors
+  detectorParams _detParms = {<span class="string">""</span>,0.,0.,0.,0,0.,0.,0.};
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) detParms[i] = _detParms;
+
+  /****** cWB production thresholds &amp; regulators ******/</span>
+
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">bpp</a>   = 0.001;      // probability for black <a href="ListOfTypes.html#pixel">pixel</a> selection (netpixel) 
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">subnet</a> = 0.7;       // [0,0.7] sub network threshold (supercluster)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">subcut</a> = 0.33;      // [0,1]   sub network threshold in the skyloop (supercluster) 
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">netRHO</a> = 4;         // [&gt;4.0] coherent network SNR (supercluster, likelihood)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">netCC</a> = 0.5;        // network correlation (supercluster, likelihood)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Acore</a> = sqrt(2);    // threshold of core pixels (supercluster, likelihood)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Tgap</a>  = 3.0;        // defragmentation time <a href="ListOfTypes.html#double">gap</a> between clusters (sec)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Fgap</a>  = 130.;       // defragmentation frequency <a href="ListOfTypes.html#double">gap</a> between clusters (Hz)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">TFgap</a> =  6.;        // threshold on the time-frequency separation between two pixels 
+
+  // regulators 
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">delta</a> = 0.5;	     // [-1:1] regulate 2 Detector sky locations
+                             // <a href="ListOfTypes.html#double">delta</a>=0 : regulator is disabled, <a href="ListOfTypes.html#double">delta</a>&lt;0 : select Lo as skystat instead of Lr
+  GAMMA(<a href="ListOfTypes.html#double">double</a>) = 0.5;       // [-1:1] regulate |fx|&lt;&lt;|f+| and |f+|&lt;&lt;1 sky locations  
+                             // gamma=0 : regulator is disabled, gamma&lt;0 : sky prior is applied 
+
+  /****** run configuration ******/</span>
+
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">runID</a> = 0;          // run number, set in the production job
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">inRate</a>= 16384;      // data sampling rate
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">fResample</a> = 0;      // if&gt;0 the <a href="ListOfTypes.html#size_t">inRate</a> is resampled to <a href="ListOfTypes.html#size_t">fResample</a>
+
+  // time-frequency transformation settings
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">l_low</a>    = 3;          // low  frequency resolution level (2^<a href="ListOfTypes.html#int">l_low</a> Hz)
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">l_high</a>   = 8;          // high frequency resolution level (2^<a href="ListOfTypes.html#int">l_high</a> Hz)
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">levelR</a>   = 2;          // resampling level : <a href="ListOfTypes.html#size_t">inRate</a>[<a href="ListOfTypes.html#size_t">fResample</a>]/(2^<a href="ListOfTypes.html#int">levelR</a>) Hz
+
+  // job segments
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">segLen</a>     = 600.;  // Segment length [sec]
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">segMLS</a>     = 300.;  // Minimum Segment Length after DQ_CAT1 [sec]
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">segTHR</a>     = 30.;   // Minimum Segment Length after DQ_CAT2 [sec] (to disable put <a href="ListOfTypes.html#double">segTHR</a>=0)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">segEdge</a>    = 8.;    // wavelet boundary offset [sec]
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">segOverlap</a> = 0.;    // overlap between job segments [sec]
+
+  // time <a href="ListOfTypes.html#double">shift</a> <a href="ListOfTypes.html#char">analysis</a> lags
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">lagSize</a>    = 1;     // number of lags (<a href="ListOfTypes.html#int">simulation</a>=1)
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">lagStep</a>    = 1.;    // [sec] time interval between lags
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">lagOff</a>     = 0;     // first lag id (<a href="ListOfTypes.html#size_t">lagOff</a>=0 - include zero lag )
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">lagMax</a>     = 150;   // 0/&gt;0 -  standard/extended lags
+  <a href="ListOfTypes.html#char">char</a>*  <a href="ListOfTypes.html#char">lagFile</a>    = NULL;  // lag file list
+  <a href="ListOfTypes.html#char">char</a>   <a href="ListOfTypes.html#char">lagMode</a>[]  = <span class="string">"w"</span>;   // w/r  -  write/read lag list
+  <a href="ListOfTypes.html#size_t">size_t</a>* <a href="ListOfTypes.html#size_t">lagSite</a>   = NULL;  // site index starting with 0
+
+  // time <a href="ListOfTypes.html#double">shift</a> <a href="ListOfTypes.html#char">analysis</a> super lags
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">slagSize</a>   = 0;     // number of super lags (<a href="ListOfTypes.html#int">simulation</a>=1) - if <a href="ListOfTypes.html#int">slagSize</a>=0 -&gt; Standard Segments
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">slagMin</a>    = 0;     // select the minimum available slag distance : <a href="ListOfTypes.html#int">slagMin</a> must be &lt;= <a href="ListOfTypes.html#int">slagMax</a>
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">slagMax</a>    = 0;     // select the maximum available slag distance
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">slagOff</a>    = 0;     // first slag id (<a href="ListOfTypes.html#int">slagOff</a>=0 - include zero slag )
+  <a href="ListOfTypes.html#size_t">size_t</a>* <a href="ListOfTypes.html#size_t">slagSite</a>  = NULL;  // site index starting with 0
+  <a href="ListOfTypes.html#char">char</a>*  <a href="ListOfTypes.html#char">slagFile</a>   = NULL;  // slag file list
+
+  // whitening parameters
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">whiteWindow</a> = 60.;  // [sec] time window dT. if = 0 - dT=T, where T is segment duration
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">whiteStride</a> = 20.;  // [sec] noise sampling time stride
+
+  // Skymap probability to be saved in the final output root file (saved if !=0 : see <a href="ListOfTypes.html#long">nSky</a>)
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">Psave</a> = 0;
+
+  // DC corrections
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">dcCal</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>];
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) <a href="ListOfTypes.html#double">dcCal</a>[i] = 1.0;
+ 
+  // <a href="ListOfTypes.html#int">simulation</a> parameters
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">simulation</a> = 0;        // 1/2/3/4 for <a href="ListOfTypes.html#int">simulation</a>(hrss/snr/tshift/multi), 0 for production
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">nfactor</a>=0;             // number of <a href="ListOfTypes.html#int">simulation</a> <a href="ListOfTypes.html#double">factors</a>
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">factors</a>[<a href="ListOfTypes.html#int">FACTORS_MAX</a>]; // array of <a href="ListOfTypes.html#int">simulation</a> <a href="ListOfTypes.html#double">factors</a> (when sim=4 <a href="ListOfTypes.html#double">factors</a>[0] is used as offset [must be <a href="ListOfTypes.html#int">int</a>])
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">FACTORS_MAX</a>;i++) <a href="ListOfTypes.html#double">factors</a>[i]=0.;
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">iwindow</a> = 5.;       // injection time window (Tinj +/- <a href="ListOfTypes.html#double">iwindow</a>/2)
+
+  // noise <a href="ListOfTypes.html#double">shift</a> data
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">dataShift</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>];
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) <a href="ListOfTypes.html#double">dataShift</a>[i] = 0.;
+
+  // use this parameter to <a href="ListOfTypes.html#double">shift</a> in time the injections (sec)
+  // use {0,0,0} to set mdc_shift to 0
+  // if {-1,0,0} the <a href="ListOfTypes.html#double">shift</a> is automatically selected
+  // {startMDC, stopMDC, offset}
+  // see description in the method CWB::Toolbox::getMDCShift 
+  mdcshift mdc_shift = {0, 0, 0};   
+
+  // delay <a href="ListOfTypes.html#char">filter</a>
+                               // catalog of WDM cross-talk coefficients 
+  <a href="ListOfTypes.html#char">char</a>   <a href="ListOfTypes.html#char">wdmXTalk</a>[1024] = <span class="string">"wdmXTalk/OverlapCatalog_Lev_8_16_32_64_128_256_iNu_4_Prec_10.bin"</span>;       
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">upTDF</a> = 4;            // upsample factor to obtain rate of TD <a href="ListOfTypes.html#char">filter</a> : TDRate = (<a href="ListOfTypes.html#size_t">inRate</a>&gt;&gt;<a href="ListOfTypes.html#int">levelR</a>)*<a href="ListOfTypes.html#size_t">upTDF</a> 
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">TDSize</a> = 12;          // time-delay <a href="ListOfTypes.html#char">filter</a> size (max 20) 
+
+  // coherence stage settings
+  // select <a href="ListOfTypes.html#pixel">pixel</a> <a href="ListOfTypes.html#int">pattern</a> used to produce the energy max maps for <a href="ListOfTypes.html#pixel">pixel</a>'s selection 
+  // patterns: <span class="string">"/"</span> - ring-up, <span class="string">"\" - ring-down, "</span>|<span class="string">" - delta, "</span>-<span class="string">" line, "</span>*<span class="string">" - single</span>
+  //
+  // <a href="ListOfTypes.html#int">pattern</a> =  0 - <span class="string">"*"</span>   1-<a href="ListOfTypes.html#pixel">pixel</a>  standard search
+  // <a href="ListOfTypes.html#int">pattern</a> =  1 - <span class="string">"3|"</span>  3-pixels vertical packet (<a href="ListOfTypes.html#double">delta</a>)
+  // <a href="ListOfTypes.html#int">pattern</a> =  2 - <span class="string">"3-"</span>  3-pixels horizontal packet (line)
+  // <a href="ListOfTypes.html#int">pattern</a> =  3 - <span class="string">"3/"</span>  3-pixels diagonal packet (ring-up)
+  // <a href="ListOfTypes.html#int">pattern</a> =  4 - <span class="string">"3\"  3-pixels anti-diagonal packet (ring-down)</span>
+  // <a href="ListOfTypes.html#int">pattern</a> =  5 - <span class="string">"5/"</span>  5-pixels diagonal packet (ring-up)
+  // <a href="ListOfTypes.html#int">pattern</a> =  6 - <span class="string">"5\"  5-pixels anti-diagonal packet (ring-down)</span>
+  // <a href="ListOfTypes.html#int">pattern</a> =  7 - <span class="string">"3+"</span>  5-pixels plus packet (plus)
+  // <a href="ListOfTypes.html#int">pattern</a> =  8 - <span class="string">"3x"</span>  5-pixels cross packet (cross)
+  // <a href="ListOfTypes.html#int">pattern</a> =  9 - <span class="string">"9p"</span>  9-pixels square packet (box)
+  // <a href="ListOfTypes.html#int">pattern</a> = else - <span class="string">"*"</span> 1-<a href="ListOfTypes.html#pixel">pixel</a>  packet (single)
+  //
+  // ------------------------------------------------------------------------------------
+  // <a href="ListOfTypes.html#int">pattern</a>==0                   Standard Search : std-<a href="ListOfTypes.html#pixel">pixel</a>    selection + likelihood2G
+  // <a href="ListOfTypes.html#int">pattern</a>!=0 &amp;&amp; <a href="ListOfTypes.html#int">pattern</a>&lt;0      Mixed    Search : packet-<a href="ListOfTypes.html#pixel">pixel</a> selection + likelihood2G 
+  // <a href="ListOfTypes.html#int">pattern</a>!=0 &amp;&amp; <a href="ListOfTypes.html#int">pattern</a>&gt;0      Packed   Search : packet-<a href="ListOfTypes.html#pixel">pixel</a> selection + likelihoodWP
+
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">pattern</a> = 0;
+
+  // supercluster stage settings
+
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">BATCH</a> = 10000;        // max number of <a href="ListOfTypes.html#pixel">pixel</a> to process in one loadTDamp batch
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">LOUD</a> = 200;           // number of <a href="ListOfTypes.html#pixel">pixel</a> per <a href="ListOfTypes.html#cluster">cluster</a> to load TD amplitudes 
+
+  // sky settings
+
+  <a href="ListOfTypes.html#bool">bool</a>   <a href="ListOfTypes.html#bool">EFEC</a>   =   true;    // Earth Fixed / Selestial coordinates
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">mode</a>   =   0;       // sky search <a href="ListOfTypes.html#size_t">mode</a>
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">angle</a>  =   0.4;     // angular resolution
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Theta1</a> =   0.;      // start theta
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Theta2</a> = 180.;      // end theta
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Phi1</a>   =   0.;      // start theta
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Phi2</a>   = 360.;      // end theta
+  <a href="ListOfTypes.html#size_t">size_t</a> <a href="ListOfTypes.html#size_t">healpix</a>= 7;         // if not 0 use <a href="ListOfTypes.html#size_t">healpix</a> sky map (number of sky pixels = 12*pow(4,<a href="ListOfTypes.html#size_t">healpix</a>))
+
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">precision</a> = GetPrecision(0,0);    // set parameters for big clusters events management
+                                           // par1 (csize) : <a href="ListOfTypes.html#cluster">cluster</a> size threshold 
+                                           // par2 (order) : order of <a href="ListOfTypes.html#size_t">healpix</a> resampled skymap (&lt;<a href="ListOfTypes.html#size_t">healpix</a>) 
+                                           // default (0,0) = disabled
+                                           // if enabled the skyloop of the events with volume&gt;=csize 
+                                           // is downsampled to skymap(order)
+
+  // file <a href="ListOfTypes.html#bool">dump</a> <a href="ListOfTypes.html#size_t">mode</a>
+
+  CWB_JOBF_OPTIONS jobfOptions = CWB_JOBF_SAVE_DISABLE;   // job file options
+  CWB_OUTF_OPTIONS outfOptions = CWB_OUTF_SAVE_DISABLE;   // output root file options
+
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">dumpHistory</a> = true;    // <a href="ListOfTypes.html#bool">dump</a> history into output root file
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">dump</a>        = false;   // <a href="ListOfTypes.html#bool">dump</a> triggers into ascii file
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">savemode</a>    = true;    // temporary save clusters on disc
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">cedDump</a>     = false;   // <a href="ListOfTypes.html#bool">dump</a> ced plots with rho&gt;<a href="ListOfTypes.html#double">cedRHO</a>
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">cedRHO</a>    = 4.0;
+  <a href="ListOfTypes.html#long">long</a> <a href="ListOfTypes.html#long">nSky</a>        = 0;       // if <a href="ListOfTypes.html#long">nSky</a>&gt;0 -&gt; # of skymap prob pixels dumped to ascii
+                              // if <a href="ListOfTypes.html#long">nSky</a>=0 -&gt; (#pixels==1000 || cum prob &gt; 0.99)
+                              // if <a href="ListOfTypes.html#long">nSky</a>&lt;0 -&gt; <a href="ListOfTypes.html#long">nSky</a>=-XYZ... save all pixels with prob &lt; 0.XYZ...
+
+  //****** directories, file names ******/</span>/
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">filter_dir</a>[1024];
+  if(gSystem-&gt;Getenv(<span class="string">"HOME_WAT_FILTERS"</span>)==NULL) {
+    cout &lt;&lt; <span class="string">"Error : environment HOME_WAT_FILTERS is not defined!!!"</span> &lt;&lt; endl;exit(1);
+  } else {
+    strcpy(<a href="ListOfTypes.html#char">filter_dir</a>,TString(gSystem-&gt;Getenv(<span class="string">"HOME_WAT_FILTERS"</span>)).Data());
+  }
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">injectionList</a>[1024]=<span class="string">""</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">skyMaskFile</a>[1024]=<span class="string">""</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">skyMaskCCFile</a>[1024]=<span class="string">""</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">channelNamesRaw</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>][50];
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">channelNamesMDC</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>][50];
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) strcpy(<a href="ListOfTypes.html#char">channelNamesRaw</a>[i],<span class="string">""</span>);
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) strcpy(<a href="ListOfTypes.html#char">channelNamesMDC</a>[i],<span class="string">""</span>);
+
+  // working dir
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">work_dir</a>[1024];
+  sprintf(<a href="ListOfTypes.html#char">work_dir</a>,<span class="string">"%s"</span>,gSystem-&gt;WorkingDirectory());
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">config_dir</a>[1024] = <span class="string">"config"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">input_dir</a>[1024]  = <span class="string">"input"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">output_dir</a>[1024] = <span class="string">"output"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">merge_dir</a>[1024]  = <span class="string">"merge"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">condor_dir</a>[1024] = <span class="string">"condor"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">report_dir</a>[1024] = <span class="string">"report"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">macro_dir</a>[1024]  = <span class="string">"macro"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">log_dir</a>[1024]    = <span class="string">"log"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">data_dir</a>[1024]   = <span class="string">"data"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">tmp_dir</a>[1024]    = <span class="string">"tmp"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">ced_dir</a>[1024]    = <span class="string">"report/ced"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">pp_dir</a>[1024]     = <span class="string">"report/postprod"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">dump_dir</a>[1024]   = <span class="string">"report/dump"</span>;
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">www_dir</a>[1024];
+
+  UserGroup_t* uinfo = gSystem-&gt;GetUserInfo();
+  TString uname = uinfo-&gt;fUser;
+  TString uhome = TString(gSystem-&gt;Getenv(<span class="string">"HOME"</span>)).Data();
+
+  // set public dir
+  if(gSystem-&gt;Getenv(<span class="string">"WWW_PUBLIC_DIR"</span>)!=NULL) {
+    // read from env
+    TString www_public_dir = TString(gSystem-&gt;Getenv(<span class="string">"WWW_PUBLIC_DIR"</span>));
+    www_public_dir.ReplaceAll(<span class="string">"X_HOME"</span>,uhome.Data());
+    www_public_dir.ReplaceAll(<span class="string">"X_USER_NAME"</span>,uname.Data());
+    www_public_dir.ReplaceAll(<span class="string">"X_HOST_NAME"</span>,gSystem-&gt;HostName());
+    sprintf(<a href="ListOfTypes.html#char">www_dir</a>,<span class="string">"%s"</span>,www_public_dir.Data());
+  } else {
+    cout &lt;&lt; <span class="string">"cwb_parameters.C : Error env WWW_PUBLIC_DIR not defined !!!"</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="string">"www_public_dir can not be defined"</span> &lt;&lt; endl;
+    exit(1);                   
+  }
+  cout &lt;&lt; <span class="string">"www_dir    : "</span> &lt;&lt; <a href="ListOfTypes.html#char">www_dir</a> &lt;&lt; endl;
+
+  // data label
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">data_label</a>[1024];
+  sprintf(<a href="ListOfTypes.html#char">data_label</a>,<span class="string">"%s"</span>,gSystem-&gt;BaseName(<a href="ListOfTypes.html#char">work_dir</a>));
+  cout &lt;&lt; <span class="string">"data_label : "</span> &lt;&lt; <a href="ListOfTypes.html#char">data_label</a> &lt;&lt; endl;
+
+  // condor declarations
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">condor_log</a>[1024];
+  if(gSystem-&gt;Getenv(<span class="string">"CONDOR_LOG_DIR"</span>)!=NULL) {
+    // get host name &amp; strip string after the first <span class="string">'.'</span>
+    // strip is necessary to get the correct condor path
+    // condor log dir is in the local header <a href="ListOfTypes.html#nodes">nodes</a> 
+    // used in ATLAS <a href="ListOfTypes.html#cluster">cluster</a> to fix issue with HSM 
+    TString host_name = gSystem-&gt;HostName();
+    if(host_name.First(<span class="string">"."</span>)&gt;=0) host_name.Resize(host_name.First(<span class="string">"."</span>));
+    // read from env
+    TString condor_log_dir = TString(gSystem-&gt;Getenv(<span class="string">"CONDOR_LOG_DIR"</span>));
+    condor_log_dir.ReplaceAll(<span class="string">"X_HOME"</span>,uhome.Data());
+    condor_log_dir.ReplaceAll(<span class="string">"X_USER_NAME"</span>,uname.Data());
+    condor_log_dir.ReplaceAll(<span class="string">"X_HOST_NAME"</span>,host_name);
+    sprintf(<a href="ListOfTypes.html#char">condor_log</a>,<span class="string">"%s"</span>,condor_log_dir.Data());
+  } else {
+    cout &lt;&lt; <span class="string">"cwb_parameters.C : Error env CONDOR_LOG_DIR not defined !!!"</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="string">"condor_log can not be defined"</span> &lt;&lt; endl;
+    exit(1);                   
+  }
+  cout &lt;&lt; <span class="string">"condor_log : "</span> &lt;&lt; <a href="ListOfTypes.html#char">condor_log</a> &lt;&lt; endl;
+
+  // Define a Unique Tag for Condor Jobs
+  // See the following link:
+  // https://ldas-gridmon.ligo.caltech.edu/accounting/condor_groups/determine_condor_account_group.html
+  // Ex : ligo.dev.o1.burst.allsky.cwboffline, ligo.prod.o1.burst.allsky.cwboffline
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">condor_tag</a>[1024] = <span class="string">""</span>;
+
+  // frame files list : [0:<a href="ListOfTypes.html#int">nIFO</a>-1]/[<a href="ListOfTypes.html#int">nIFO</a>:2*<a href="ListOfTypes.html#int">nIFO</a>-1] contains strain/mdc file names
+  // If all mdc channels are in a single frame file -&gt; mdc must be declared in the <a href="ListOfTypes.html#int">nIFO</a> position
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">frFiles</a>[2*<a href="ListOfTypes.html#int">NIFO_MAX</a>][1024];
+  for(<a href="ListOfTypes.html#int">int</a> i=0;i&lt;2*<a href="ListOfTypes.html#int">NIFO_MAX</a>;i++) strcpy(<a href="ListOfTypes.html#char">frFiles</a>[i],<span class="string">""</span>);
+  // frame reading retry time (sec) : 0 -&gt; disable
+  // retry time = <a href="ListOfTypes.html#int">frRetryTime</a>*(num of trials) : max trials = 3
+  <a href="ListOfTypes.html#int">int</a>  <a href="ListOfTypes.html#int">frRetryTime</a>=60;	
+
+  // dq file list 
+  // {<a href="ListOfTypes.html#char">ifo</a>, dqcat_file, dqcat[0/1/2], <a href="ListOfTypes.html#double">shift</a>[sec], inverse[false/true], 4columns[true/false]}
+  <a href="ListOfTypes.html#int">int</a> <a href="ListOfTypes.html#int">nDQF</a> = 0;
+  dqfile DQF[<a href="ListOfTypes.html#int">DQF_MAX</a>];
+
+  // read and <a href="ListOfTypes.html#bool">dump</a> data on local disk (<a href="ListOfTypes.html#char">nodedir</a>)
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">nodedir</a>[1024] = <span class="string">""</span>;
+  if(gSystem-&gt;Getenv(<span class="string">"NODE_DATA_DIR"</span>)!=NULL) {
+    // read from env
+    TString node_data_dir = TString(gSystem-&gt;Getenv(<span class="string">"NODE_DATA_DIR"</span>));
+    node_data_dir.ReplaceAll(<span class="string">"X_HOME"</span>,uhome.Data());
+    node_data_dir.ReplaceAll(<span class="string">"X_USER_NAME"</span>,uname.Data());
+    node_data_dir.ReplaceAll(<span class="string">"X_HOST_NAME"</span>,gSystem-&gt;HostName());
+    sprintf(<a href="ListOfTypes.html#char">nodedir</a>,<span class="string">"%s"</span>,node_data_dir.Data());
+  } else {
+    cout &lt;&lt; <span class="string">"cwb_parameters.C : Error env NODE_DATA_DIR not defined !!!"</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="string">"nodir can not be defined"</span> &lt;&lt; endl;
+    exit(1);                   
+  }
+  if(gSystem-&gt;Getenv(<span class="string">"_USE_PEGASUS"</span>)!=NULL) strcpy(<a href="ListOfTypes.html#char">nodedir</a>,<span class="string">"."</span>);
+  cout &lt;&lt; <span class="string">"nodename   : "</span> &lt;&lt; gSystem-&gt;HostName() &lt;&lt; endl;
+  cout &lt;&lt; <span class="string">"nodedir    : "</span> &lt;&lt; <a href="ListOfTypes.html#char">nodedir</a> &lt;&lt; endl;
+
+  // get CWB_CONFIG
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">cwb_config_env</a>[1024] = <span class="string">""</span>;
+  if(gSystem-&gt;Getenv(<span class="string">"CWB_CONFIG"</span>)!=NULL) {
+    strcpy(<a href="ListOfTypes.html#char">cwb_config_env</a>,TString(gSystem-&gt;Getenv(<span class="string">"CWB_CONFIG"</span>)).Data());
+  }
+
+  // get SITE_CLUSTER
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">site_cluster_env</a>[1024] = <span class="string">""</span>;
+  if(gSystem-&gt;Getenv(<span class="string">"SITE_CLUSTER"</span>)!=NULL) {
+    strcpy(<a href="ListOfTypes.html#char">site_cluster_env</a>,TString(gSystem-&gt;Getenv(<span class="string">"SITE_CLUSTER"</span>)).Data());
+  }
+
+  // Plugin
+
+  TMacro plugin;                // Macro source
+  TMacro configPlugin;  	// Macro config
+  plugin.SetName(<span class="string">""</span>);
+  configPlugin.SetName(<span class="string">""</span>);
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">parPlugin</a>[1024] = <span class="string">""</span>;	// user defined parameters (used in the plugin)
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">dataPlugin</a> = false;      // if <a href="ListOfTypes.html#bool">dataPlugin</a>=true disable read data from frames
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">mdcPlugin</a>  = false;      // if <a href="ListOfTypes.html#bool">dataPlugin</a>=true disable read mdc from frames
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">dcPlugin</a>   = false;      // if <a href="ListOfTypes.html#bool">dcPlugin</a>=true disable built-in data conditioning (only 2G)
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">cohPlugin</a>  = false;      // if <a href="ListOfTypes.html#bool">cohPlugin</a>=true disable built-in coherence stage (only 2G)
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">scPlugin</a>   = false;      // if <a href="ListOfTypes.html#bool">scPlugin</a>=true disable built-in supercluster function (only 2G)
+  <a href="ListOfTypes.html#bool">bool</a> <a href="ListOfTypes.html#bool">outPlugin</a>  = false;      // if <a href="ListOfTypes.html#bool">outPlugin</a>=true disable built-in output wave file (only 2G)
+
+  <a href="ListOfTypes.html#char">char</a> <a href="ListOfTypes.html#char">comment</a>[1024] = <span class="string">""</span>;	// user defined <a href="ListOfTypes.html#char">comment</a>
+
+  // 2G search modes
+  //   r - un-modeled
+  //   i - iota - wave: no,partial dispersion correction
+  //   p - Psi - wave (no dispersion correction)
+  // l,s - linear, loose linear
+  // c,g - circular. loose circular
+  // e,b - elliptical (no dispersion correction), b=p for now
+  // 
+  // low/upper case search (like <span class="string">'i'</span>/<span class="string">'I'</span>) &amp; <a href="ListOfTypes.html#bool">optim</a>=false - standard MRA
+  // low case search (like <span class="string">'i'</span>)           &amp; <a href="ListOfTypes.html#bool">optim</a>=true  - extract PCs from a single resolution
+  // upper case (like <span class="string">'I'</span>)                &amp; <a href="ListOfTypes.html#bool">optim</a>=true  - standard single resolution <a href="ListOfTypes.html#char">analysis</a>
+
+  // ----------------------------------------------
+  // obsolete parameters
+  // ----------------------------------------------
+
+  <a href="ListOfTypes.html#double">double</a> &amp;<a href="ListOfTypes.html#double">gap</a> = <a href="ListOfTypes.html#double">iwindow</a>;        // alias of <a href="ListOfTypes.html#double">iwindow</a>
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">levelF</a> = 0;		// 1G parameter 
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">levelD</a> = 0;		// 1G parameter 
+  <a href="ListOfTypes.html#int">int</a>    <a href="ListOfTypes.html#int">mlagStep</a> = 0;		// 1G parameter
+  <a href="ListOfTypes.html#bool">bool</a>   <a href="ListOfTypes.html#bool">eDisbalance</a> = false;	// 1G parameter 
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">mask</a> = 0.00;           // 1G parameter
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">Tlpr</a>  = 0.;            // 1G parameter
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">x2or</a>  = 0.;            // 1G parameter
+  <a href="ListOfTypes.html#double">double</a> <a href="ListOfTypes.html#double">shift</a>[<a href="ListOfTypes.html#int">NIFO_MAX</a>];       // 1G parameter
+  <a href="ListOfTypes.html#char">char</a>   <a href="ListOfTypes.html#char">filter</a>[1024] = <span class="string">""</span>;     // 1G parameter
+
+#endif
+}
+</pre></div>
+<div id="linenums"><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="1" href="#1" class="ln">1</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="2" href="#2" class="ln">2</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="3" href="#3" class="ln">3</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="4" href="#4" class="ln">4</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="5" href="#5" class="ln">5</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="6" href="#6" class="ln">6</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="7" href="#7" class="ln">7</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="8" href="#8" class="ln">8</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="9" href="#9" class="ln">9</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="10" href="#10" class="ln">10</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="11" href="#11" class="ln">11</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="12" href="#12" class="ln">12</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="13" href="#13" class="ln">13</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="14" href="#14" class="ln">14</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="15" href="#15" class="ln">15</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="16" href="#16" class="ln">16</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="17" href="#17" class="ln">17</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="18" href="#18" class="ln">18</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="19" href="#19" class="ln">19</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="20" href="#20" class="ln">20</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="21" href="#21" class="ln">21</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="22" href="#22" class="ln">22</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="23" href="#23" class="ln">23</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="24" href="#24" class="ln">24</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="25" href="#25" class="ln">25</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="26" href="#26" class="ln">26</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="27" href="#27" class="ln">27</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="28" href="#28" class="ln">28</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="29" href="#29" class="ln">29</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="30" href="#30" class="ln">30</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="31" href="#31" class="ln">31</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="32" href="#32" class="ln">32</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="33" href="#33" class="ln">33</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="34" href="#34" class="ln">34</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="35" href="#35" class="ln">35</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="36" href="#36" class="ln">36</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="37" href="#37" class="ln">37</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="38" href="#38" class="ln">38</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="39" href="#39" class="ln">39</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="40" href="#40" class="ln">40</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="41" href="#41" class="ln">41</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="42" href="#42" class="ln">42</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="43" href="#43" class="ln">43</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="44" href="#44" class="ln">44</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="45" href="#45" class="ln">45</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="46" href="#46" class="ln">46</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="47" href="#47" class="ln">47</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="48" href="#48" class="ln">48</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="49" href="#49" class="ln">49</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="50" href="#50" class="ln">50</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="51" href="#51" class="ln">51</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="52" href="#52" class="ln">52</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="53" href="#53" class="ln">53</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="54" href="#54" class="ln">54</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="55" href="#55" class="ln">55</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="56" href="#56" class="ln">56</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="57" href="#57" class="ln">57</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="58" href="#58" class="ln">58</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="59" href="#59" class="ln">59</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="60" href="#60" class="ln">60</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="61" href="#61" class="ln">61</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="62" href="#62" class="ln">62</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="63" href="#63" class="ln">63</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="64" href="#64" class="ln">64</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="65" href="#65" class="ln">65</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="66" href="#66" class="ln">66</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="67" href="#67" class="ln">67</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="68" href="#68" class="ln">68</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="69" href="#69" class="ln">69</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="70" href="#70" class="ln">70</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="71" href="#71" class="ln">71</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="72" href="#72" class="ln">72</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="73" href="#73" class="ln">73</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="74" href="#74" class="ln">74</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="75" href="#75" class="ln">75</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="76" href="#76" class="ln">76</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="77" href="#77" class="ln">77</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="78" href="#78" class="ln">78</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="79" href="#79" class="ln">79</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="80" href="#80" class="ln">80</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="81" href="#81" class="ln">81</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="82" href="#82" class="ln">82</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="83" href="#83" class="ln">83</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="84" href="#84" class="ln">84</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="85" href="#85" class="ln">85</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="86" href="#86" class="ln">86</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="87" href="#87" class="ln">87</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="88" href="#88" class="ln">88</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="89" href="#89" class="ln">89</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="90" href="#90" class="ln">90</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="91" href="#91" class="ln">91</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="92" href="#92" class="ln">92</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="93" href="#93" class="ln">93</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="94" href="#94" class="ln">94</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="95" href="#95" class="ln">95</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="96" href="#96" class="ln">96</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="97" href="#97" class="ln">97</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="98" href="#98" class="ln">98</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="99" href="#99" class="ln">99</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="100" href="#100" class="ln">100</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="101" href="#101" class="ln">101</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="102" href="#102" class="ln">102</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="103" href="#103" class="ln">103</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="104" href="#104" class="ln">104</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="105" href="#105" class="ln">105</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="106" href="#106" class="ln">106</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="107" href="#107" class="ln">107</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="108" href="#108" class="ln">108</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="109" href="#109" class="ln">109</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="110" href="#110" class="ln">110</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="111" href="#111" class="ln">111</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="112" href="#112" class="ln">112</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="113" href="#113" class="ln">113</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="114" href="#114" class="ln">114</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="115" href="#115" class="ln">115</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="116" href="#116" class="ln">116</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="117" href="#117" class="ln">117</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="118" href="#118" class="ln">118</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="119" href="#119" class="ln">119</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="120" href="#120" class="ln">120</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="121" href="#121" class="ln">121</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="122" href="#122" class="ln">122</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="123" href="#123" class="ln">123</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="124" href="#124" class="ln">124</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="125" href="#125" class="ln">125</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="126" href="#126" class="ln">126</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="127" href="#127" class="ln">127</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="128" href="#128" class="ln">128</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="129" href="#129" class="ln">129</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="130" href="#130" class="ln">130</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="131" href="#131" class="ln">131</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="132" href="#132" class="ln">132</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="133" href="#133" class="ln">133</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="134" href="#134" class="ln">134</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="135" href="#135" class="ln">135</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="136" href="#136" class="ln">136</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="137" href="#137" class="ln">137</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="138" href="#138" class="ln">138</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="139" href="#139" class="ln">139</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="140" href="#140" class="ln">140</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="141" href="#141" class="ln">141</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="142" href="#142" class="ln">142</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="143" href="#143" class="ln">143</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="144" href="#144" class="ln">144</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="145" href="#145" class="ln">145</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="146" href="#146" class="ln">146</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="147" href="#147" class="ln">147</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="148" href="#148" class="ln">148</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="149" href="#149" class="ln">149</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="150" href="#150" class="ln">150</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="151" href="#151" class="ln">151</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="152" href="#152" class="ln">152</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="153" href="#153" class="ln">153</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="154" href="#154" class="ln">154</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="155" href="#155" class="ln">155</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="156" href="#156" class="ln">156</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="157" href="#157" class="ln">157</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="158" href="#158" class="ln">158</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="159" href="#159" class="ln">159</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="160" href="#160" class="ln">160</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="161" href="#161" class="ln">161</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="162" href="#162" class="ln">162</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="163" href="#163" class="ln">163</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="164" href="#164" class="ln">164</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="165" href="#165" class="ln">165</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="166" href="#166" class="ln">166</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="167" href="#167" class="ln">167</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="168" href="#168" class="ln">168</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="169" href="#169" class="ln">169</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="170" href="#170" class="ln">170</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="171" href="#171" class="ln">171</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="172" href="#172" class="ln">172</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="173" href="#173" class="ln">173</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="174" href="#174" class="ln">174</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="175" href="#175" class="ln">175</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="176" href="#176" class="ln">176</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="177" href="#177" class="ln">177</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="178" href="#178" class="ln">178</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="179" href="#179" class="ln">179</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="180" href="#180" class="ln">180</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="181" href="#181" class="ln">181</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="182" href="#182" class="ln">182</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="183" href="#183" class="ln">183</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="184" href="#184" class="ln">184</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="185" href="#185" class="ln">185</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="186" href="#186" class="ln">186</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="187" href="#187" class="ln">187</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="188" href="#188" class="ln">188</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="189" href="#189" class="ln">189</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="190" href="#190" class="ln">190</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="191" href="#191" class="ln">191</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="192" href="#192" class="ln">192</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="193" href="#193" class="ln">193</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="194" href="#194" class="ln">194</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="195" href="#195" class="ln">195</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="196" href="#196" class="ln">196</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="197" href="#197" class="ln">197</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="198" href="#198" class="ln">198</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="199" href="#199" class="ln">199</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="200" href="#200" class="ln">200</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="201" href="#201" class="ln">201</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="202" href="#202" class="ln">202</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="203" href="#203" class="ln">203</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="204" href="#204" class="ln">204</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="205" href="#205" class="ln">205</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="206" href="#206" class="ln">206</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="207" href="#207" class="ln">207</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="208" href="#208" class="ln">208</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="209" href="#209" class="ln">209</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="210" href="#210" class="ln">210</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="211" href="#211" class="ln">211</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="212" href="#212" class="ln">212</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="213" href="#213" class="ln">213</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="214" href="#214" class="ln">214</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="215" href="#215" class="ln">215</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="216" href="#216" class="ln">216</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="217" href="#217" class="ln">217</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="218" href="#218" class="ln">218</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="219" href="#219" class="ln">219</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="220" href="#220" class="ln">220</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="221" href="#221" class="ln">221</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="222" href="#222" class="ln">222</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="223" href="#223" class="ln">223</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="224" href="#224" class="ln">224</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="225" href="#225" class="ln">225</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="226" href="#226" class="ln">226</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="227" href="#227" class="ln">227</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="228" href="#228" class="ln">228</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="229" href="#229" class="ln">229</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="230" href="#230" class="ln">230</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="231" href="#231" class="ln">231</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="232" href="#232" class="ln">232</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="233" href="#233" class="ln">233</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="234" href="#234" class="ln">234</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="235" href="#235" class="ln">235</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="236" href="#236" class="ln">236</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="237" href="#237" class="ln">237</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="238" href="#238" class="ln">238</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="239" href="#239" class="ln">239</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="240" href="#240" class="ln">240</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="241" href="#241" class="ln">241</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="242" href="#242" class="ln">242</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="243" href="#243" class="ln">243</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="244" href="#244" class="ln">244</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="245" href="#245" class="ln">245</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="246" href="#246" class="ln">246</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="247" href="#247" class="ln">247</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="248" href="#248" class="ln">248</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="249" href="#249" class="ln">249</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="250" href="#250" class="ln">250</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="251" href="#251" class="ln">251</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="252" href="#252" class="ln">252</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="253" href="#253" class="ln">253</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="254" href="#254" class="ln">254</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="255" href="#255" class="ln">255</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="256" href="#256" class="ln">256</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="257" href="#257" class="ln">257</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="258" href="#258" class="ln">258</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="259" href="#259" class="ln">259</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="260" href="#260" class="ln">260</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="261" href="#261" class="ln">261</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="262" href="#262" class="ln">262</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="263" href="#263" class="ln">263</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="264" href="#264" class="ln">264</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="265" href="#265" class="ln">265</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="266" href="#266" class="ln">266</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="267" href="#267" class="ln">267</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="268" href="#268" class="ln">268</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="269" href="#269" class="ln">269</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="270" href="#270" class="ln">270</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="271" href="#271" class="ln">271</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="272" href="#272" class="ln">272</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="273" href="#273" class="ln">273</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="274" href="#274" class="ln">274</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="275" href="#275" class="ln">275</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="276" href="#276" class="ln">276</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="277" href="#277" class="ln">277</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="278" href="#278" class="ln">278</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="279" href="#279" class="ln">279</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="280" href="#280" class="ln">280</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="281" href="#281" class="ln">281</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="282" href="#282" class="ln">282</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="283" href="#283" class="ln">283</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="284" href="#284" class="ln">284</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="285" href="#285" class="ln">285</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="286" href="#286" class="ln">286</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="287" href="#287" class="ln">287</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="288" href="#288" class="ln">288</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="289" href="#289" class="ln">289</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="290" href="#290" class="ln">290</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="291" href="#291" class="ln">291</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="292" href="#292" class="ln">292</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="293" href="#293" class="ln">293</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="294" href="#294" class="ln">294</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="295" href="#295" class="ln">295</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="296" href="#296" class="ln">296</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="297" href="#297" class="ln">297</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="298" href="#298" class="ln">298</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="299" href="#299" class="ln">299</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="300" href="#300" class="ln">300</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="301" href="#301" class="ln">301</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="302" href="#302" class="ln">302</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="303" href="#303" class="ln">303</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="304" href="#304" class="ln">304</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="305" href="#305" class="ln">305</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="306" href="#306" class="ln">306</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="307" href="#307" class="ln">307</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="308" href="#308" class="ln">308</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="309" href="#309" class="ln">309</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="310" href="#310" class="ln">310</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="311" href="#311" class="ln">311</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="312" href="#312" class="ln">312</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="313" href="#313" class="ln">313</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="314" href="#314" class="ln">314</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="315" href="#315" class="ln">315</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="316" href="#316" class="ln">316</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="317" href="#317" class="ln">317</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="318" href="#318" class="ln">318</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="319" href="#319" class="ln">319</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="320" href="#320" class="ln">320</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="321" href="#321" class="ln">321</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="322" href="#322" class="ln">322</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="323" href="#323" class="ln">323</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="324" href="#324" class="ln">324</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="325" href="#325" class="ln">325</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="326" href="#326" class="ln">326</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="327" href="#327" class="ln">327</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="328" href="#328" class="ln">328</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="329" href="#329" class="ln">329</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="330" href="#330" class="ln">330</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="331" href="#331" class="ln">331</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="332" href="#332" class="ln">332</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="333" href="#333" class="ln">333</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="334" href="#334" class="ln">334</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="335" href="#335" class="ln">335</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="336" href="#336" class="ln">336</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="337" href="#337" class="ln">337</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="338" href="#338" class="ln">338</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="339" href="#339" class="ln">339</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="340" href="#340" class="ln">340</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="341" href="#341" class="ln">341</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="342" href="#342" class="ln">342</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="343" href="#343" class="ln">343</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="344" href="#344" class="ln">344</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="345" href="#345" class="ln">345</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="346" href="#346" class="ln">346</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="347" href="#347" class="ln">347</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="348" href="#348" class="ln">348</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="349" href="#349" class="ln">349</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="350" href="#350" class="ln">350</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="351" href="#351" class="ln">351</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="352" href="#352" class="ln">352</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="353" href="#353" class="ln">353</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="354" href="#354" class="ln">354</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="355" href="#355" class="ln">355</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="356" href="#356" class="ln">356</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="357" href="#357" class="ln">357</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="358" href="#358" class="ln">358</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="359" href="#359" class="ln">359</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="360" href="#360" class="ln">360</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="361" href="#361" class="ln">361</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="362" href="#362" class="ln">362</a></div><div class="ln">&nbsp;<span class="lnfile">cwb2G_parameters.C:</span><a name="363" href="#363" class="ln">363</a></div></div>
+
+<br />
+<!--SIGNATURE-->
+<div id="footer">
+
+<em>&raquo; Last generated: Tue Jan  5 14:28:24 2021</em><em>&raquo;GIT Version: public cWB-6.4.0 21909173a69fb82d64137abfadf61f42935c1394 </em><br />
+<em>For comments or suggestions regarding the documentation or CWB in general please use <a href="https://gitlab.com/groups/gwburst/-/issues">cWB_Issues</a>.</em>
+</div>
+</div>
+</body>
+</html>
